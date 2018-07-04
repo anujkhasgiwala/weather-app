@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App using AngularJS</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  </head>
+  <body>
+    <div class="__main" ng-controller="jsonReader">
+    <div class="main">
+      <div class="__header">
+        <div class="header-wrapper"></div>
+      </div>
+      <div class="__sidebar">
+        <div class="sidebar">
+          <div class="__menu"></div>
+        </div>
+      </div>
+      <div class="__content">
+        <div class="card">
+          <div class="__card-content">
+            <div class="box">
+              <div class="select">
+                <p class="control has-icons-left first-name">
+                  <select name="gender">
+                    <option selected=selected>Select Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                  </select>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modal"></div>
+    </div>
+  </div>
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+  </body>
+</html>
