@@ -20,13 +20,7 @@ myApp.controller('jsonReader', function ($scope, $http) {
         humidity:"",
         windSpeed:""
     };
-    $scope.fiveDayWeather = {
-        date: "",
-        icon: "",
-        temperature:"",
-        humidity:"",
-        windSpeed:""
-    };
+    $scope.fiveDayWeathers = {};
 
     $scope.byCity = {
         value : false
@@ -70,23 +64,21 @@ myApp.controller('jsonReader', function ($scope, $http) {
 
     //API call for 5 day weather
     $scope.getSelectedCityDayWeather = function() {
-        $http.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + $scope.selectedCity.city + ",us&APPID=d9fe31cc351de14a1bbc4cb4f203af4f&units=imperial&cnt=5").success(function (weatherData) {
-            $scope.fiveDayWeather.date = "";
-            $scope.fiveDayWeather.icon = "wi wi-owm-" + weatherData.list[0].weather[0].id;
-            $scope.fiveDayWeather.temperature = weatherData.list[0].main.temp;
-            $scope.fiveDayWeather.humidity = weatherData.list[0].main.humidity;
-            $scope.fiveDayWeather.windSpeed = weatherData.list[0].wind.speed;
+        $http.get("http://api.openweathermap.org/data/2.5/forecast?q="+$scope.selectedCity1.city+",us&units=imperial&APPID=d9fe31cc351de14a1bbc4cb4f203af4f").success(function (weatherData) {
+            $scope.fiveDayWeathers = weatherData;
+            angular.forEach($scope.fiveDayWeathers.list, function(value, key) {
+                $scope.fiveDayWeathers.list[key].weather[0].icon = "wi wi-owm-"+value.weather[0].id;
+            });
         });
     }
 
     $scope.zip;
     $scope.getSelectedZipDayWeather = function() {
-        $http.get("http://api.openweathermap.org/data/2.5/forecast/daily?zip=" + $scope.zip + ",us&APPID=d9fe31cc351de14a1bbc4cb4f203af4f&units=imperial&cnt=5").success(function (weatherData) {
-            $scope.fiveDayWeather.date = "";
-            $scope.fiveDayWeather.icon = "wi wi-owm-" + weatherData.list[0].weather[0].id;
-            $scope.fiveDayWeather.temperature = weatherData.list[0].main.temp;
-            $scope.fiveDayWeather.humidity = weatherData.list[0].main.humidity;
-            $scope.fiveDayWeather.windSpeed = weatherData.list[0].wind.speed;
+        $http.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + $scope.zip + ",us&APPID=d9fe31cc351de14a1bbc4cb4f203af4f&units=imperial").success(function (weatherData) {
+            $scope.fiveDayWeathers = weatherData;
+            angular.forEach($scope.fiveDayWeathers.list, function(value, key) {
+                $scope.fiveDayWeathers.list[key].weather[0].icon = "wi wi-owm-"+value.weather[0].id;
+            });
         });
     }
 });

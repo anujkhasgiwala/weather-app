@@ -73,6 +73,10 @@
             </div>
             <div class="box">
               <strong>5 day weather</strong>
+              <div class="buttons is-right">
+                <input class="button is-rounded" type="submit" value="Graph">
+                <input class="button is-rounded" type="submit" value="Table">
+              </div>
               <div class="control">
                 <label class="radio"> Get weather forecast by:
                   <input type="radio" ng-click="searchWeatherByCity()" ng-checked="byCity.value" > City
@@ -87,40 +91,29 @@
                 </p>
               </div>
               <input class="input" type="text" placeholder="Enter zip code" ng-show="byZip.value" ng-model="zip" ng-blur="getSelectedZipDayWeather()" />
-              <article class="media">
-                <div class="media-left">
-                  <span class="icon is-medium is-left">
-                    <i ng-class="fiveDayWeather.icon"></i>
-                  </span>
-                </div>
-                <div class="media-content">
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Weather</th>
-                      <th>Humidity</th>
-                      <th>Wind Speed</th>
-                    </tr>
-                    </thead>
-                    <tbody ng-repeat="">
-                    <tr>
-                      <th>1</th>
-                      <td>36</td>
-                      <td>+32</td>
-                      <td>81</td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>38</td>
-                      <td>20</td>
-                      <td>11</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </article>
-              </div>
+              <table class="table is-striped">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Weather</th>
+                    <th>Humidity</th>
+                    <th>Wind Speed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="fiveDayWeather in fiveDayWeathers.list">
+                    <th>{{fiveDayWeather.dt_txt}}</th>
+                    <td>
+                      <span class="icon is-medium is-left">
+                        <i ng-class="fiveDayWeather.weather[0].icon"></i>
+                      </span>
+                    </td>
+                    <td>{{fiveDayWeather.main.humidity}}</td>
+                    <td>{{fiveDayWeather.wind.speed}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <!-- Cards for weather details End -->
           </div>
         </div>
